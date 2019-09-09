@@ -16,6 +16,8 @@ function configureAnalytics(newConfig) {
     authApiClient: newConfig.authApiClient,
     analyticsApiBaseUrl: newConfig.analyticsApiBaseUrl,
   };
+  console.log('**** Analytics configured!');
+  console.log(config);
 }
 
 function getTrackingLogApiBaseUrl() {
@@ -55,24 +57,26 @@ function checkIdentifyCalled() {
  * @returns The promise returned by apiClient.post.
  */
 function sendTrackingLogEvent(eventName, properties) {
-  const snakeEventData = snakeCaseObject(properties, { deep: true });
-  const serverData = {
-    event_type: eventName,
-    event: JSON.stringify(snakeEventData),
-    page: window.location.href,
-  };
-  const loggingService = getLoggingService(); // verifies configuration early
-  return getAuthApiClient().post(
-    getTrackingLogApiBaseUrl(),
-    formurlencoded(serverData),
-    {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
+  try {
+    const snakeEventData = snakeCaseObject(properties, { deep: true });
+    const serverData = {
+      event_type: eventName,
+      event: JSON.stringify(snakeEventData),
+      page: window.location.href,
+    };
+    const loggingService = getLoggingService(); // verifies configuration early
+    return getAuthApiClient().post(
+      getTrackingLogApiBaseUrl(),
+      formurlencoded(serverData),
+      {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
       },
-    },
-  ).catch((error) => {
-    loggingService.logAPIErrorResponse(error);
-  });
+    ).catch((error) => {
+      loggingService.logAPIErrorResponse(error);
+    });
+  } catch(error) {}
 }
 
 /**
