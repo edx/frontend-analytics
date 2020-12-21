@@ -1,5 +1,5 @@
 ⛔️ DEPRECATION WARNING 
-======================
+=======================
 
 **This library is deprecated and will be archived.** 
 
@@ -37,8 +37,8 @@ Add the following configuration code to your app::
       analyticsApiBaseUrl: configuration.LMS_BASE_URL,
     });
 
-.. |Build Status| image:: https://api.travis-ci.org/edx/frontend-analytics.svg?branch=master
-   :target: https://travis-ci.org/edx/frontend-analytics
+.. |Build Status| image:: https://api.travis-ci.com/edx/frontend-analytics.svg?branch=master
+   :target: https://travis-ci.com/edx/frontend-analytics
 .. |Coveralls| image:: https://img.shields.io/coveralls/edx/frontend-analytics.svg?branch=master
    :target: https://coveralls.io/github/edx/frontend-analytics
 .. |npm_version| image:: https://img.shields.io/npm/v/@edx/frontend-analytics.svg
